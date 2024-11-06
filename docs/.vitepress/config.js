@@ -1,9 +1,12 @@
 // docs/.vitepress/config.js
-export default {
+import { defineConfig } from 'vitepress'
+
+
+export default defineConfig({
   // 站点级选项
   title: "晨光红茶的博客", // 网站标题
   description: "徐龙飞来写博客的地方", // 网站描述
-  base: "/my-vitepress-blog/",
+  base: '/my-vitepress-blog/',
   outDir: '../public',
   themeConfig: {
     nav: [
@@ -19,7 +22,7 @@ export default {
     ],
     head: [
       // 配置网站的图标（显示在浏览器的 tab 上）
-      ["link", { rel: "icon", href: `/public/portfolio.ico` }],
+      ["link", { rel: "icon", href: `/portfolio.ico` }],
     ],
     docFooter: {
       prev: "上一篇",
@@ -50,5 +53,5 @@ export default {
       },
     },
   },
-};
+});
 
