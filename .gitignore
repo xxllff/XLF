@@ -3,4 +3,5 @@ dist
 cache
 .temp
 .DS_Store
-.yml
+.gitlab-ci.yml
+package-lock.json
