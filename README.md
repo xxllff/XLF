@@ -15,7 +15,7 @@ my-vitepress-blog/
 │   ├── about/              # 关于页面
 │   │   └── cv.md           # 个人简历
 │   ├── blog/               # 博客文章
-│   │   └── index.md        # 博客目录
+│   │   └── index.md        # 博客目录 
 │   ├── publications/       # 发表文章
 │   │   └── index.md        # 发表文章目录
 │   └── index.md            # 首页
