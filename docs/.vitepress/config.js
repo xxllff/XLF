@@ -4,7 +4,7 @@ export default {
   title: "晨光红茶的博客", // 网站标题
   description: "徐龙飞来写博客的地方", // 网站描述
   base: '/my-vitepress-blog/',
-  outDir: '../public',
+  // outDir: '../public',
   themeConfig: {
     nav: [
       {
@@ -40,7 +40,7 @@ export default {
       "/publications/": {
         text: "publications",
         items: [
-          { text: "CVPR 2024", link: "/publication/2024-02-17-paper-title-number-4.md" },
+          { text: "CVPR 2024", link: "/publications/2024-02-17-paper-title-number-4.md" },
           { text: "NeurlIPS 2024", link: "https://apeirony.github.io/ConceptFactory/" },
         ],
       }

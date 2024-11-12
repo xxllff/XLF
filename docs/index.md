@@ -11,7 +11,7 @@ hero:
   actions:
     - theme: brand
       text: Get Started
-      link: /public/cv/cv.md
+      link: /cv/cv.md
     - theme: alt
       text: View on GitHub
       link: https://github.com/xxllff/my-vitepress-blog
