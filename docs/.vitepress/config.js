@@ -10,7 +10,7 @@ export default {
       {
         text: '导航',
         items: [
-          { text: "first", link: "/my-first-post.md" },
+          { text: "cv", link: "/cv/cv.md" },
           { text: "blog", link: "/blog/" },
           { text: "publications", link: "/publications/" },
         ]
@@ -19,7 +19,7 @@ export default {
     ],
     head: [
       // 配置网站的图标（显示在浏览器的 tab 上）
-      ["link", { rel: "icon", href: `./public/portfolio.ico` }],
+      ["link", { rel: "icon", href: `/portfolio.ico` }],
     ],
     docFooter: {
       prev: "上一篇",
