@@ -3,7 +3,7 @@ export default {
   // 站点级选项
   title: "晨光红茶的博客", // 网站标题
   description: "徐龙飞来写博客的地方", // 网站描述
-  base: '/my-vitepress-blog/public/',
+  base: '/my-vitepress-blog/',
   // outDir: '../public',
   themeConfig: {
     nav: [
