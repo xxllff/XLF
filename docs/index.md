@@ -6,7 +6,7 @@ hero:
   text: tech-the-world.
   tagline: Welcome to my blog 🚀
   image:
-    src: /public/portfolio.jpg
+    src: ./public/portfolio.jpg
     alt: logo
   actions:
     - theme: brand
