@@ -4,4 +4,3 @@ cache
 .temp
 .DS_Store
 .gitlab-ci.yml
-package-lock.json
