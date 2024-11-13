@@ -3,8 +3,9 @@
   "version": "1.0.0",
   "main": "index.js",
   "scripts": {
+    "update-blog": "node tasks/update-blog.js",
+    "build": "npm run update-blog && vitepress build docs",
     "dev": "vitepress dev docs",
-    "build": "vitepress build docs",
     "serve": "vitepress serve docs"
   },
   "keywords": [],

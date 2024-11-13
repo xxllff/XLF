@@ -1,0 +1,18 @@
+{
+    "version": "2.0.0",
+    "tasks": [
+      {
+        "label": "Create Blog Post",
+        "type": "shell",
+        "command": "node",
+        "args": [
+          "${workspaceFolder}/tasks/createBlogPost.js"
+        ],
+        "group": {
+          "kind": "build",
+          "isDefault": true
+        }
+      }
+    ]
+  }
+  
