@@ -1,7 +1,7 @@
 export default {
   title: "晨光红茶的博客",
   description: "徐龙飞来写博客的地方",
-  base: '/my-vitepress-blog/',
+  base: '/XLF/',
 
   head: [
     ["link", { rel: "icon", href: `/portfolio.ico` }],
