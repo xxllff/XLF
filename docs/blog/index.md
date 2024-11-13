@@ -8,3 +8,4 @@
 - [pytorch中nn.Embedding原理及使用](./2024-04-02-blog-post-1.md)
 - [Git同步问题](./2024-09-24-blog-post-1.md)
 - [阅读笔记：Discovering Conceptual Knowledge with Analytic Ontology Templates for Articulated Objects](./2024-11-12-blog-post-1.md)
+- [阅读笔记：ConceptFactory: Facilitate 3D Object Knowledge Annotation with Object Conceptualization](./2024-11-13-blog-post-1.md)
