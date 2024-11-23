@@ -7,6 +7,7 @@
 本项目是一个基于 VitePress 的静态博客网站，旨在分享技术文章和个人见解。
 
 ## 目录结构
+
 ```py
 my-vitepress-blog/
 ├── docs/                   # 博客内容
@@ -55,10 +56,19 @@ npm run build
 npm run serve
 ```
 
-## 部署 
+### 自动化生成命名新笔记
+
+```bash
+Ctrl + Shift + P
+run task
+```
+
+### 自动化部署到index
+
+```bash
+npm run build
+```
+
+## 部署
 
 项目使用 GitLab CI 进行自动化部署，配置文件为 .gitlab-ci.yml。
-
-## 贡献
-
-欢迎提交 Issue 和 Pull Request 来贡献代码。

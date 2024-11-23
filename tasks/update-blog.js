@@ -1,64 +1,62 @@
-const fs = require('fs');
-const path = require('path');
+const fs = require('fs')
+const path = require('path')
 
-// 设置路径
-const blogDir = path.resolve(__dirname, '../docs/blog');
-const indexFile = path.resolve(blogDir, 'index.md');
-const configFile = path.resolve(__dirname, '../docs/.vitepress/config.js');
-
-// 获取 `blog` 目录中的所有 .md 文件
-function getMarkdownFiles(dir) {
-  return fs.readdirSync(dir)
-    .filter(file => file.endsWith('.md') && file !== 'index.md')
-    .map(file => path.join(dir, file));
+// 动态加载 ES Module
+async function loadConfig (configPath) {
+  const configUrl = pathToFileURL(configPath).href // 转换为 file:// URL
+  const configModule = await import(configUrl)
+  return configModule.default
 }
 
-// 从文件中提取第一个 H2 标题内容
-function extractFirstH2Title(filePath) {
-  const content = fs.readFileSync(filePath, 'utf-8');
-  const match = content.match(/^##\s+(.+)/m);  // 匹配 H2 标题
-  return match ? match[1] : '无标题';
+// 引入 `pathToFileURL` 工具
+const { pathToFileURL } = require('url')
+
+// 更新 sidebar 的内容
+async function updateSidebar (files, configPath) {
+  const config = await loadConfig(configPath)
+
+  const newSidebarItems = files.map(file => ({
+    text: extractFirstH2Title(file), // 提取 H2 标题
+    link: `/blog/${path.basename(file)}` // 生成相对路径
+  }))
+
+  if (config.themeConfig.sidebar['/blog/']) {
+    config.themeConfig.sidebar['/blog/'].items = newSidebarItems
+    console.log('sidebar 更新完成:', newSidebarItems)
+
+    // 写回文件
+    const updatedConfigContent = `export default ${JSON.stringify(
+      config,
+      null,
+      2
+    )};\n`
+    fs.writeFileSync(configPath, updatedConfigContent, 'utf-8') // 覆写原文件
+    console.log('config.js 更新完成')
+  } else {
+    console.log('未找到 /blog/ 的 sidebar 配置')
+  }
 }
 
-// 更新 index.md 文件
-function updateIndexFile(files) {
-  const lines = ['# Blog 专题', '', '## 目录', ''];
-  files.forEach(file => {
-    const title = extractFirstH2Title(file);
-    const relativePath = './' + path.basename(file);
-    lines.push(`- [${title}](${relativePath})`);
-  });
-  fs.writeFileSync(indexFile, lines.join('\n'), 'utf-8');
-  console.log('index.md 更新完成');
-}
-
-// 更新 config.js 中的 sidebar 部分
-function updateConfigFile(files) {
-  let configContent = fs.readFileSync(configFile, 'utf-8');
-
-  // 生成 sidebar 内容
-  const sidebarItems = files.map(file => {
-    const title = extractFirstH2Title(file);
-    const relativePath = '/blog/' + path.basename(file);
-    return `          { text: "${title}", link: "${relativePath}" }`;
-  }).join(',\n');
-
-  // 使用正则匹配 sidebar 的 "/blog/" 部分，替换为新的内容
-  configContent = configContent.replace(
-    /\/blog\/:\s*\{[^}]+\}/,
-    `/blog/: {\n        text: "blog",\n        items: [\n${sidebarItems}\n        ]\n      }`
-  );
-
-  fs.writeFileSync(configFile, configContent, 'utf-8');
-  console.log('config.js 更新完成');
+// 提取 H2 标题
+function extractFirstH2Title (filePath) {
+  const content = fs.readFileSync(filePath, 'utf-8')
+  const match = content.match(/^##\s+(.+)/m) // 匹配第一个 H2 标题
+  return match ? match[1] : '无标题'
 }
 
 // 主函数
-function main() {
-  const files = getMarkdownFiles(blogDir);
-  updateIndexFile(files);
-  updateConfigFile(files);
+async function main () {
+  const blogDir = path.resolve(__dirname, '../docs/blog')
+  const configPath = path.resolve(__dirname, '../docs/.vitepress/config.js')
+
+  const files = fs
+    .readdirSync(blogDir)
+    .filter(file => file.endsWith('.md') && file !== 'index.md')
+    .map(file => path.resolve(blogDir, file))
+
+  await updateSidebar(files, configPath)
 }
 
-// 运行主函数
-main();
+main().catch(err => {
+  console.error('执行失败:', err)
+})
