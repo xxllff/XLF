@@ -74,6 +74,10 @@ export default {
           {
             "text": "在别人的repo中上传自己的branch",
             "link": "/blog/2024-11-23-blog-post-1.md"
+          },
+          {
+            "text": "Navigation 专题 —— Intelligent mobile robot navigation in unknown and complex environment using reinforcement learning technique",
+            "link": "/blog/2025-01-18-blog-post-1.md"
           }
         ]
       },
